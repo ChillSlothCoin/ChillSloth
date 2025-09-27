@@ -3,295 +3,155 @@
 <head>
   <meta charset="utf-8" />
   <title>LazySloth — The Chill Memecoin</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <style>
     :root{
-      --bg-light:#FFD700;   /* Light Gold */
-      --bg-dark:#FFA500;    /* Dark Gold */
-      --fg:#1f1f1f;         
+      --bg-light:#FFD700;
+      --bg-dark:#FFA500;
+      --fg:#1f1f1f;
       --muted:#333;
-      --brand:#DAA520;      /* goldenrod */
-      --brand-2:#B8860B;    /* dark goldenrod */
+      --brand:#DAA520;
+      --brand-2:#B8860B;
       --line:#444;
       --shadow:0 10px 30px rgba(0,0,0,.25);
       --maxw:1100px;
     }
 
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-      color:var(--fg);
-    }
+    body{margin:0;font:16px/1.6 system-ui,sans-serif;color:var(--fg);overflow-x:hidden;}
+    img{max-width:100%;height:auto;display:block}
     .container{max-width:var(--maxw);margin:auto;padding:0 16px}
 
-    /* Header */
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      height:10vh;
-      padding:0 24px;
+    /* Header inside Section 1 */
+    .header{
+      width:100%;
+      display:flex;align-items:center;justify-content:flex-end;
+      padding:16px 24px;
       background:transparent;
-      position:absolute;
-      top:0; left:0; right:0;
-      z-index:100;
+      position:absolute;top:0;left:0;right:0;
+      z-index:10;
     }
-    .logo-header{height:70%;width:auto}
     .btn{
-      background:var(--brand);
-      color:#fff;
-      border-radius:999px;
-      padding:10px 18px;
-      font-weight:700;
-      text-decoration:none;
-      box-shadow:var(--shadow);
-      transition:filter .15s ease;
+      background:var(--brand);color:#fff;border-radius:999px;
+      padding:10px 16px;font-weight:700;text-decoration:none;
+      box-shadow:var(--shadow);transition:.2s;
     }
-    .btn:hover{filter:brightness(1.08)}
+    .btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
 
-    /* Section 1: Hero with sun rays */
+    /* Section 1 Hero */
     #s1{
-      height:100vh;
-      width:100vw;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
+      min-height:100vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
       background:
-        radial-gradient(circle at center,
-          var(--bg-light) 0%,
-          var(--bg-dark) 70%),
+        radial-gradient(circle at center,var(--bg-light) 0%,var(--bg-dark) 70%),
         conic-gradient(
           from 0deg,
-          rgba(255, 215, 0, 0.35) 0deg 10deg,
-          transparent 10deg 20deg,
-          rgba(255, 215, 0, 0.35) 20deg 30deg,
-          transparent 30deg 40deg,
-          rgba(255, 215, 0, 0.35) 40deg 50deg,
-          transparent 50deg 60deg,
-          rgba(255, 215, 0, 0.35) 60deg 70deg,
-          transparent 70deg 80deg,
-          rgba(255, 215, 0, 0.35) 80deg 90deg,
-          transparent 90deg 100deg,
-          rgba(255, 215, 0, 0.35) 100deg 110deg,
-          transparent 110deg 120deg,
-          rgba(255, 215, 0, 0.35) 120deg 130deg,
-          transparent 130deg 140deg,
-          rgba(255, 215, 0, 0.35) 140deg 150deg,
-          transparent 150deg 160deg,
-          rgba(255, 215, 0, 0.35) 160deg 170deg,
-          transparent 170deg 180deg,
-          rgba(255, 215, 0, 0.35) 180deg 190deg,
-          transparent 190deg 200deg,
-          rgba(255, 215, 0, 0.35) 200deg 210deg,
-          transparent 210deg 220deg,
-          rgba(255, 215, 0, 0.35) 220deg 230deg,
-          transparent 230deg 240deg,
-          rgba(255, 215, 0, 0.35) 240deg 250deg,
-          transparent 250deg 260deg,
-          rgba(255, 215, 0, 0.35) 260deg 270deg,
-          transparent 270deg 280deg,
-          rgba(255, 215, 0, 0.35) 280deg 290deg,
-          transparent 290deg 300deg,
-          rgba(255, 215, 0, 0.35) 300deg 310deg,
-          transparent 310deg 320deg,
-          rgba(255, 215, 0, 0.35) 320deg 330deg,
-          transparent 330deg 340deg,
-          rgba(255, 215, 0, 0.35) 340deg 350deg,
-          transparent 350deg 360deg
+          rgba(255,215,0,.35) 0deg 10deg,transparent 10deg 20deg,
+          rgba(255,215,0,.35) 20deg 30deg,transparent 30deg 40deg,
+          rgba(255,215,0,.35) 40deg 50deg,transparent 50deg 60deg,
+          rgba(255,215,0,.35) 60deg 70deg,transparent 70deg 80deg,
+          rgba(255,215,0,.35) 80deg 90deg,transparent 90deg 100deg,
+          rgba(255,215,0,.35) 100deg 110deg,transparent 110deg 120deg,
+          rgba(255,215,0,.35) 120deg 130deg,transparent 130deg 140deg,
+          rgba(255,215,0,.35) 140deg 150deg,transparent 150deg 160deg,
+          rgba(255,215,0,.35) 160deg 170deg,transparent 170deg 180deg,
+          rgba(255,215,0,.35) 180deg 190deg,transparent 190deg 200deg,
+          rgba(255,215,0,.35) 200deg 210deg,transparent 210deg 220deg,
+          rgba(255,215,0,.35) 220deg 230deg,transparent 230deg 240deg,
+          rgba(255,215,0,.35) 240deg 250deg,transparent 250deg 260deg,
+          rgba(255,215,0,.35) 260deg 270deg,transparent 270deg 280deg,
+          rgba(255,215,0,.35) 280deg 290deg,transparent 290deg 300deg,
+          rgba(255,215,0,.35) 300deg 310deg,transparent 310deg 320deg,
+          rgba(255,215,0,.35) 320deg 330deg,transparent 330deg 340deg,
+          rgba(255,215,0,.35) 340deg 350deg,transparent 350deg 360deg
         );
-      background-blend-mode: overlay;
+      background-blend-mode:overlay;
+      position:relative;
     }
-    .hero-image{
-      width:70vw;
-      height:70vh;
-      object-fit:contain;
-      margin:0 auto 10px auto;
-    }
-    .tagline{
-      font-size:2.5rem;
-      font-weight:800;
-      margin:10px 0 20px 0;
-      color:var(--fg);
-    }
-    .socials{
-      display:flex;
-      gap:24px;
-      justify-content:center;
-      margin-top:10px;
-    }
-    .socials a{
-      display:inline-block;
-      transition:transform .2s ease;
-    }
-    .socials a:hover{transform:scale(1.1)}
-    .socials img{
-      width:48px;
-      height:48px;
-      display:block;
-    }
+    .hero-image{width:70vw;max-height:70vh;object-fit:contain;margin:0 auto 10px}
+    .tagline{font-size:2rem;font-weight:800;margin:10px 0 16px}
+    .socials{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+    .socials img{width:44px;height:44px;transition:.2s}
+    .socials img:hover{transform:scale(1.1)}
 
-    /* Section 2: Buy */
+    /* Section 2 */
     #buy{
-      height:100vh;
-      width:100vw;
-      background:#000;
-      color:var(--bg-light);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:40px 20px;
+      min-height:100vh;background:#000;color:var(--bg-light);
+      display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+      padding:40px 16px;
     }
     #buy h2{margin-bottom:12px}
-    #buy .lead{
-      margin-bottom:40px;
-      color:var(--bg-light);
-    }
-
-    /* Buy Button */
+    #buy .lead{margin-bottom:32px;color:var(--bg-light)}
     .buy-btn{
-      display:inline-block;
-      background:#000;
-      color:var(--bg-light);
-      border:3px solid var(--bg-light); /* dickere goldene Border */
-      border-radius:1vh;
-      padding:18px 40px;               /* mehr Innenabstand */
-      font-size:20px;                  /* größere Schrift */
-      font-weight:800;                 /* fetter Text */
-      text-decoration:none;
-      box-shadow:var(--shadow);
-      transition:all .2s ease;
-      margin-bottom:40px;
+      display:inline-block;background:#000;color:var(--bg-light);
+      border:3px solid var(--bg-light);border-radius:1vh;
+      padding:16px 40px;font-size:20px;font-weight:800;text-decoration:none;
+      box-shadow:var(--shadow);transition:.2s;margin-bottom:40px;
     }
-    .buy-btn:hover{
-      background:var(--bg-light);
-      color:#000;
-      border-color:var(--bg-dark);
-    }
+    .buy-btn:hover{background:var(--bg-light);color:#000;border-color:var(--bg-dark)}
+    .steps{display:grid;grid-template-columns:1fr;gap:20px;max-width:1100px;width:100%}
+    @media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr)}}
+    .step{background:#111;border:1px solid var(--line);border-radius:12px;padding:20px;text-align:left}
+    .step b{display:block;margin-bottom:8px;color:var(--bg-light)}
 
-    .steps{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:20px;
-      width:100%;
-      max-width:1000px;
-    }
-    @media(min-width:800px){
-      .steps{grid-template-columns:repeat(4,1fr)}
-    }
-    .step{
-      background:#111;
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:20px;
-      box-shadow:var(--shadow);
-      text-align:left;
-    }
-    .step b{
-      display:block;
-      font-size:18px;
-      margin-bottom:8px;
-      color:var(--bg-light);
-    }
-
-    /* Section 3: About */
+    /* Section 3 */
     #about{
-      height:90vh;
-      width:100vw;
-      background:linear-gradient(to right, var(--bg-light), var(--bg-dark));
-      color:var(--fg);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:40px 20px;
+      min-height:90vh;background:linear-gradient(to right,var(--bg-light),var(--bg-dark));
+      display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+      padding:40px 16px;color:var(--fg);
     }
-    #about h2{
-      margin-bottom:40px;
-      font-size:2.5rem;
-      font-weight:800;
-    }
+    #about h2{margin:0 0 28px;font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:800}
     .about-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:40px;
-      align-items:center;
-      text-align:left;
-      width:100%;
-      max-width:1000px;
+      display:grid;grid-template-columns:1fr;gap:40px;max-width:1100px;width:100%;
+      align-items:center;text-align:left;
     }
-    .about-text p{
-      font-size:1.2rem;
-      line-height:1.6;
-      margin-bottom:1em;
-    }
-    .about-img{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .about-img img{
-      width:60vh;
-      height:60vh;
-      object-fit:contain;
-      display:block;
-    }
-    @media(min-width:900px){
-      .about-grid{grid-template-columns:1fr 1fr;}
+    @media(min-width:900px){.about-grid{grid-template-columns:1fr 1fr}}
+    .about-text p{margin:0 0 1em;font-size:1.1rem;line-height:1.6}
+    .about-img{display:flex;align-items:center;justify-content:center}
+    .about-img img{width:60vh;height:60vh;object-fit:contain}
+
+    /* 👇 Mobile-Priorität: Bild nach oben + bessere Größe */
+    @media (max-width: 900px){
+      .about-img{order:-1; align-self:start; margin-bottom:12px;}
+      .about-img img{
+        width:min(85vw,520px);
+        height:auto;
+        max-height:40svh; /* verhindert zu viel Scrollen */
+      }
+      .about-text p{font-size:1rem;}
     }
 
     /* Footer */
     footer{
-      height:10vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--fg);
-      font-size:14px;
-      text-align:center;
-      background:linear-gradient(to right, var(--bg-light), var(--bg-dark));
-      margin:0;
-      padding:0;
-      border-top:none;
+      min-height:10vh;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(to right,var(--bg-light),var(--bg-dark));
+      color:var(--fg);text-align:center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <img src="0.Banner.png" alt="LazySloth Logo" class="logo-header">
-    <a href="#buy" class="btn">Buy LAZY</a>
-  </header>
-
-  <!-- SECTION 1: Hero -->
+  <!-- Section 1 with header inside -->
   <section id="s1">
+    <div class="header">
+      <a href="#buy" class="btn">Buy LAZY</a>
+    </div>
+
     <img src="0.Banner.png" alt="LazySloth Hero" class="hero-image">
     <p class="tagline">Lazy but rich af</p>
     <div class="socials">
-      <a href="https://www.instagram.com/chillslothii/" target="_blank" rel="noopener">
-        <img src="instagram.png" alt="Instagram Logo">
-      </a>
-      <a href="https://x.com/ChillSlothII" target="_blank" rel="noopener">
-        <img src="twitter.png" alt="Twitter/X Logo">
-      </a>
-      <a href="https://t.me/+nzFyPr9t849hMzYy" target="_blank" rel="noopener">
-        <img src="telegram.png" alt="Telegram Logo">
-      </a>
+      <a href="https://www.instagram.com/chillslothii/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+      <a href="https://x.com/ChillSlothII" target="_blank"><img src="twitter.png" alt="Twitter/X"></a>
+      <a href="https://t.me/+nzFyPr9t849hMzYy" target="_blank"><img src="telegram.png" alt="Telegram"></a>
     </div>
   </section>
 
-  <!-- SECTION 2: Buy -->
+  <!-- Section 2 -->
   <section id="buy">
     <div class="container">
       <h2>Get LazySloth</h2>
       <p class="lead">Swap SOL for LAZY on Raydium — fast and easy.</p>
-      <a href="https://raydium.io/swap/?inputMint=sol&outputMint=2ZmAUqciYX8ThigFfjQaxw4YbhHUmSRUd5saG3Qgmoon" target="_blank" rel="noopener" class="buy-btn">Buy on Raydium</a>
+      <a href="https://raydium.io/swap/?inputMint=sol&outputMint=2ZmAUqciYX8ThigFfjQaxw4YbhHUmSRUd5saG3Qgmoon" target="_blank" class="buy-btn">Buy on Raydium</a>
       <h3>How to Buy</h3>
       <div class="steps">
         <div class="step"><b>1) Get a wallet</b>Install Phantom (or another Solana wallet) and create your address.</div>
@@ -302,7 +162,7 @@
     </div>
   </section>
 
-  <!-- SECTION 3: About -->
+  <!-- Section 3 -->
   <section id="about">
     <div class="container">
       <h2>About LazySloth</h2>
@@ -313,18 +173,19 @@
           <p>For 2026, we are planning the release of our own game closely connected to LazySloth. With this, we aim not only to grow the token, but also to establish it in the world of gaming and entertainment.</p>
         </div>
         <div class="about-img">
-          <img src="about.png" alt="About LazySloth placeholder">
+          <img src="about.png" alt="About LazySloth">
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container">© <span id="year"></span> LazySloth — Take it slow 🦥</div>
   </footer>
 
   <script>
-    // Set current year automatically
+    // Auto-year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
