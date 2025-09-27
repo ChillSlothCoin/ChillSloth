@@ -1,46 +1,260 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="utf-8">
-  <title>My Simple Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meine einfache Website</title>
+  <meta name="description" content="Eine minimalistische und responsive Beispiel-Website." />
+  <link rel="icon" href="data:," />
+
+  <style>
+    /* ===== Grund-Styles ===== */
+    :root{
+      --bg: #ffffff;
+      --fg: #1f2937;          /* Graublau */
+      --muted: #6b7280;       /* grauer Text */
+      --brand: #2563eb;       /* Blau */
+      --brand-contrast: #ffffff;
+      --card: #f3f4f6;        /* hellgrau */
+      --ring: rgba(37,99,235,.35);
+      --maxw: 1000px;
+      --radius: 14px;
+      --shadow: 0 10px 24px rgba(0,0,0,.08);
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b0f1a;
+        --fg:#e5e7eb;
+        --muted:#9ca3af;
+        --card:#111827;
+        --brand:#60a5fa;
+        --brand-contrast:#0b0f1a;
+        --ring: rgba(96,165,250,.45);
+        --shadow: 0 10px 24px rgba(0,0,0,.35);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+      background: var(--bg);
+      color: var(--fg);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ===== Hilfs-Utilities ===== */
+    .container{max-width:var(--maxw); margin-inline:auto; padding: 0 1.2rem;}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:var(--brand); color:var(--brand-contrast);
+      padding:.8rem 1.1rem; border-radius:999px; text-decoration:none; font-weight:600;
+      box-shadow: var(--shadow);
+      transition: transform .06s ease, filter .2s ease;
+      border: 0;
+      cursor: pointer;
+    }
+    .btn:focus-visible{outline: 3px solid var(--ring); outline-offset: 2px}
+    .btn:hover{filter:brightness(1.05)}
+    .btn:active{transform: translateY(1px)}
+
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+    }
+
+    /* ===== Skip-Link für Barrierefreiheit ===== */
+    .skip-link{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      position: fixed; left: 1rem; top: 1rem; width:auto; height:auto;
+      background: var(--brand); color: var(--brand-contrast); padding:.6rem .9rem; border-radius:.5rem;
+      outline: none;
+    }
+
+    /* ===== Header / Nav ===== */
+    header{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 75%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      min-height:64px;
+    }
+    .brand{font-weight:800; letter-spacing:.2px}
+    nav ul{display:flex; gap:1rem; list-style:none; padding:0; margin:0}
+    nav a{color:inherit; text-decoration:none; font-weight:600}
+    nav a:hover{text-decoration:underline}
+
+    /* Mobile Nav */
+    .nav-toggle{display:none}
+    .hamburger{
+      display:none; background:none; border:0; font:inherit; cursor:pointer; padding:.6rem; border-radius:.6rem;
+    }
+    .hamburger:focus-visible{outline:3px solid var(--ring); outline-offset:2px}
+    @media (max-width: 720px){
+      nav ul{display:none}
+      .hamburger{display:inline-flex}
+      .nav-toggle:checked ~ nav ul{
+        display:flex; flex-direction:column; position:absolute; inset:64px 0 auto 0; background:var(--bg);
+        padding: 1rem; border-bottom:1px solid color-mix(in srgb, var(--fg) 10%, transparent)
+      }
+    }
+
+    /* ===== Hero ===== */
+    .hero{
+      padding: 4.5rem 0 2.5rem;
+      text-align:center;
+    }
+    .hero h1{
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height:1.1; margin: 0 0 .7rem;
+      letter-spacing:.3px;
+    }
+    .hero p{margin:0 auto 1.4rem; max-width: 60ch; color: var(--muted)}
+    .hero .actions{display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap}
+
+    /* ===== Features ===== */
+    .features{
+      padding: 2.5rem 0;
+      display:grid; gap:1rem;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .feature{grid-column: span 12}
+    @media (min-width: 720px){
+      .feature{grid-column: span 4}
+    }
+
+    /* ===== Inhalt / Abschnitt ===== */
+    section{padding: 2.5rem 0}
+    h2{font-size: clamp(1.5rem, 3.2vw, 2rem); margin:0 0 1rem}
+    p.lead{color:var(--muted); margin-top:-.4rem; margin-bottom:1.2rem}
+
+    /* ===== Formular ===== */
+    form{
+      display:grid; gap:.9rem; max-width: 680px;
+    }
+    label{font-weight:600}
+    input, textarea{
+      width:100%; padding:.75rem .85rem; border-radius:.7rem; border:1px solid color-mix(in srgb, var(--fg) 20%, transparent);
+      background: var(--bg); color: var(--fg);
+    }
+    input:focus, textarea:focus{outline:3px solid var(--ring); border-color: transparent}
+    textarea{min-height:140px; resize:vertical}
+
+    /* ===== Footer ===== */
+    footer{
+      border-top: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+      padding: 2rem 0; color: var(--muted); font-size:.95rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Website</h1>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-  <nav>
-    <a href="#home">Home</a> |
-    <a href="#about">About</a> |
-    <a href="#contact">Contact</a>
-  </nav>
+  <!-- ===== Header / Navigation ===== -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Hauptnavigation">
+      <div class="brand">MeinLogo</div>
 
-  <section id="home">
-    <h2>Home</h2>
-    <p>This is a very simple HTML page without CSS or JavaScript.</p>
+      <!-- Mobile Toggle (Checkbox-Hack, kein JS nötig) -->
+      <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="Menü umschalten" />
+      <label for="nav-toggle" class="hamburger" aria-hidden="true" title="Menü">
+        ☰
+      </label>
+
+      <nav>
+        <ul>
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#ueber">Über uns</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero container">
+    <h1>Einfach. Schnell. Responsive.</h1>
+    <p>Dieses minimalistische Template ist ein idealer Startpunkt für kleine Projekte, Portfolios oder Landingpages. Saubere Struktur, gute Lesbarkeit und leicht anzupassen.</p>
+    <div class="actions">
+      <a class="btn" href="#leistungen">Mehr erfahren</a>
+      <a class="btn" href="#kontakt" style="background: transparent; color: var(--fg); border: 2px solid var(--fg);">Kontakt aufnehmen</a>
+    </div>
   </section>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>Here you can add some information about yourself or your project.</p>
-  </section>
+  <!-- ===== Features / Leistungen ===== -->
+  <main id="main" class="container">
+    <section id="leistungen" aria-labelledby="leistungen-title">
+      <h2 id="leistungen-title">Leistungen</h2>
+      <p class="lead">Drei Dinge, die dieses Template dir bietet.</p>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <form>
-      <label for="name">Name:</label><br>
-      <input id="name" name="name" type="text"><br><br>
+      <div class="features">
+        <article class="feature card">
+          <h3>Schneller Start</h3>
+          <p>Nur eine Datei – keine Abhängigkeiten. Kopieren, einfügen, fertig.</p>
+        </article>
 
-      <label for="email">Email:</label><br>
-      <input id="email" name="email" type="email"><br><br>
+        <article class="feature card">
+          <h3>Gute Grundlagen</h3>
+          <p>Semantische HTML-Tags, zugänglich, mobilfreundlich, dunkler Modus automatisch.</p>
+        </article>
 
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message"></textarea><br><br>
+        <article class="feature card">
+          <h3>Einfach anpassbar</h3>
+          <p>Farben, Abstände und Ecken als Variablen – passe sie in Sekunden an.</p>
+        </article>
+      </div>
+    </section>
 
-      <input type="submit" value="Send">
-    </form>
-  </section>
+    <!-- ===== Über uns ===== -->
+    <section id="ueber" aria-labelledby="ueber-title">
+      <h2 id="ueber-title">Über uns</h2>
+      <p class="lead">Kurz und knackig – ein Abschnitt für deine Story.</p>
+      <div class="card">
+        <p>Wir lieben klare, schnelle Websites. Dieses Template ist dafür gedacht, dir einen unkomplizierten Einstieg zu geben, ohne auf gute UX zu verzichten.</p>
+      </div>
+    </section>
 
+    <!-- ===== Kontakt ===== -->
+    <section id="kontakt" aria-labelledby="kontakt-title">
+      <h2 id="kontakt-title">Kontakt</h2>
+      <p class="lead">Schreib uns eine Nachricht – wir melden uns.</p>
+      <form class="card" onsubmit="event.preventDefault(); alert('Danke! Formular-Demo – hier würdest du deine Verarbeitung einbauen.');">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Max Mustermann" required />
+        </div>
+        <div>
+          <label for="email">E-Mail</label>
+          <input id="email" name="email" type="email" placeholder="max@example.com" required />
+        </div>
+        <div>
+          <label for="nachricht">Nachricht</label>
+          <textarea id="nachricht" name="nachricht" placeholder="Worum geht’s?"></textarea>
+        </div>
+        <button class="btn" type="submit">Senden</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
   <footer>
-    <p>© 2025 My Simple Website</p>
+    <div class="container">
+      © <span id="year"></span> Deine Firma. Alle Rechte vorbehalten.
+    </div>
   </footer>
+
+  <script>
+    // Kleines Detail: aktuelles Jahr automatisch einsetzen
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
