@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>LazySloth — The Chill Memecoin</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
     :root{
-      --bg-light:#FFD700;   /* Hellgold */
-      --bg-dark:#FFA500;    /* Dunkelgold */
+      --bg-light:#FFD700;   /* Light Gold */
+      --bg-dark:#FFA500;    /* Dark Gold */
       --fg:#1f1f1f;         
-      --muted:#ccc;
+      --muted:#333;
       --brand:#DAA520;      /* goldenrod */
       --brand-2:#B8860B;    /* dark goldenrod */
       --line:#444;
@@ -50,7 +50,7 @@
     }
     .btn:hover{filter:brightness(1.08)}
 
-    /* Section 1: Hero mit Sonnenstrahlen */
+    /* Section 1: Hero with sun rays */
     #s1{
       height:100vh;
       width:100vw;
@@ -59,8 +59,6 @@
       justify-content:center;
       align-items:center;
       text-align:center;
-
-      /* Sonnenstrahl-Effekt */
       background:
         radial-gradient(circle at center,
           var(--bg-light) 0%,
@@ -105,7 +103,6 @@
           transparent 350deg 360deg
         );
       background-blend-mode: overlay;
-      position:relative;
     }
     .hero-image{
       width:70vw;
@@ -139,6 +136,7 @@
     /* Section 2: Buy */
     #buy{
       height:100vh;
+      width:100vw;
       background:#000;
       color:var(--bg-light);
       display:flex;
@@ -149,22 +147,31 @@
       padding:40px 20px;
     }
     #buy h2{margin-bottom:12px}
-    #buy .lead{margin-bottom:40px;color:var(--muted)}
+    #buy .lead{
+      margin-bottom:40px;
+      color:var(--bg-light);
+    }
 
+    /* Buy Button */
     .buy-btn{
       display:inline-block;
-      background:var(--brand-2);
-      color:#fff;
-      border-radius:999px;
-      padding:14px 24px;
-      font-size:18px;
-      font-weight:700;
+      background:#000;
+      color:var(--bg-light);
+      border:3px solid var(--bg-light); /* dickere goldene Border */
+      border-radius:1vh;
+      padding:18px 40px;               /* mehr Innenabstand */
+      font-size:20px;                  /* größere Schrift */
+      font-weight:800;                 /* fetter Text */
       text-decoration:none;
       box-shadow:var(--shadow);
-      transition:filter .15s ease;
+      transition:all .2s ease;
       margin-bottom:40px;
     }
-    .buy-btn:hover{filter:brightness(1.1)}
+    .buy-btn:hover{
+      background:var(--bg-light);
+      color:#000;
+      border-color:var(--bg-dark);
+    }
 
     .steps{
       display:grid;
@@ -191,21 +198,66 @@
       color:var(--bg-light);
     }
 
-    /* Section 3 */
+    /* Section 3: About */
     #about{
-      background:linear-gradient(135deg,var(--bg-light),var(--bg-dark));
+      height:90vh;
+      width:100vw;
+      background:linear-gradient(to right, var(--bg-light), var(--bg-dark));
       color:var(--fg);
-      padding:56px 0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
       text-align:center;
+      padding:40px 20px;
+    }
+    #about h2{
+      margin-bottom:40px;
+      font-size:2.5rem;
+      font-weight:800;
+    }
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:40px;
+      align-items:center;
+      text-align:left;
+      width:100%;
+      max-width:1000px;
+    }
+    .about-text p{
+      font-size:1.2rem;
+      line-height:1.6;
+      margin-bottom:1em;
+    }
+    .about-img{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .about-img img{
+      width:60vh;
+      height:60vh;
+      object-fit:contain;
+      display:block;
+    }
+    @media(min-width:900px){
+      .about-grid{grid-template-columns:1fr 1fr;}
     }
 
+    /* Footer */
     footer{
-      border-top:1px solid var(--line);
-      padding:28px 0;
-      color:var(--muted);
+      height:10vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--fg);
       font-size:14px;
       text-align:center;
-      background:rgba(255,248,230,0.85)
+      background:linear-gradient(to right, var(--bg-light), var(--bg-dark));
+      margin:0;
+      padding:0;
+      border-top:none;
     }
   </style>
 </head>
@@ -220,10 +272,7 @@
   <!-- SECTION 1: Hero -->
   <section id="s1">
     <img src="0.Banner.png" alt="LazySloth Hero" class="hero-image">
-
-    <!-- Spruch -->
     <p class="tagline">Lazy but rich af</p>
-
     <div class="socials">
       <a href="https://www.instagram.com/chillslothii/" target="_blank" rel="noopener">
         <img src="instagram.png" alt="Instagram Logo">
@@ -243,7 +292,6 @@
       <h2>Get LazySloth</h2>
       <p class="lead">Swap SOL for LAZY on Raydium — fast and easy.</p>
       <a href="https://raydium.io/swap/?inputMint=sol&outputMint=2ZmAUqciYX8ThigFfjQaxw4YbhHUmSRUd5saG3Qgmoon" target="_blank" rel="noopener" class="buy-btn">Buy on Raydium</a>
-
       <h3>How to Buy</h3>
       <div class="steps">
         <div class="step"><b>1) Get a wallet</b>Install Phantom (or another Solana wallet) and create your address.</div>
@@ -258,15 +306,27 @@
   <section id="about">
     <div class="container">
       <h2>About LazySloth</h2>
-      <p class="lead" style="max-width:60ch;margin:0 auto">
-        LazySloth ist ein community-getriebener Memecoin. Langsam, stetig und entspannt —
-        mit Fokus auf Spaß, gute Vibes und eine aktive Community.
-      </p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>LazySloth is a community-driven memecoin built on Solana. 🦥</p>
+          <p>Slow, steady &amp; always chilled – but with the power to moon 🚀</p>
+          <p>It’s about good vibes, having fun, and building a strong tribe.</p>
+          <p>💸 Get rich, live life at its best, and stay lazy while we win together.</p>
+        </div>
+        <div class="about-img">
+          <img src="about.png" alt="About LazySloth placeholder">
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">© 2025 LazySloth — Take it slow 🦥</div>
+    <div class="container">© <span id="year"></span> LazySloth — Take it slow 🦥</div>
   </footer>
+
+  <script>
+    // Set current year automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
